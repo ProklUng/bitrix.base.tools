@@ -1,0 +1,19 @@
+{
+    "name": "proklung/bitrix-base-tools",
+    "autoload": { },
+    "authors": [
+        {
+            "name": "Gavrilov Fedy",
+            "email": "fedor.gavrilov.75@mail.ru",
+            "homepage": "https://github.com/ProklUng"
+        }
+    ],
+    "license": "MIT",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5.2 || ^8.0 || ^9.0",
+        "mockery/mockery": "^1.4",
+        "fzaninotto/faker": "^1.9.2",
+        "hanneskod/classtools": "^1.2",
+        "mmucklo/krumo": "^0.7.0"
+    }
+}

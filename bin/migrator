@@ -1,0 +1,77 @@
+#!/usr/bin/env php
+<?php
+
+use Arrilot\BitrixMigrations\Constructors\FieldConstructor;
+use Arrilot\BitrixMigrations\Migrator;
+use Arrilot\BitrixMigrations\MigratorFacade;
+use Arrilot\BitrixMigrations\Storages\BitrixDatabaseStorage;
+use Arrilot\BitrixMigrations\TemplatesCollection;
+use Prokl\Commands\ConsoleCommandConfigurator;
+use Prokl\Commands\DbExport;
+use Prokl\Commands\DbImport;
+use Prokl\Commands\EmailsCanBeSendCommand;
+use Prokl\Commands\Migrations\ArchiveCommand;
+use Prokl\Commands\Migrations\InstallCommand;
+use Prokl\Commands\Migrations\MakeCommand;
+use Prokl\Commands\Migrations\MigrateCommand;
+use Prokl\Commands\Migrations\RollbackCommand;
+use Prokl\Commands\Migrations\StatusCommand;
+use Prokl\Commands\Migrations\TemplatesCommand;
+use Prokl\Utils\LoaderBitrix;
+use Symfony\Component\Console\Application;
+
+@set_time_limit(0);
+
+$_SERVER['DOCUMENT_ROOT'] = __DIR__ . DIRECTORY_SEPARATOR . '../../../..';
+$GLOBALS['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
+
+$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/dependencies/autoload.php';
+$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/libs/autoload.php';
+
+require_once $autoloadPath;
+require_once $autoloadPathModule;
+
+/**
+ * Загрузить Битрикс.
+ */
+$loaderBitrix = new LoaderBitrix();
+$loaderBitrix->setDocumentRoot($_SERVER['DOCUMENT_ROOT']);
+$loaderBitrix->initializeBitrix();
+
+if (!$loaderBitrix->isBitrixLoaded()) {
+    exit('Bitrix not initialized.');
+}
+
+\CModule::IncludeModule("iblock");
+
+$config = [
+    'table' => 'migrations',
+    'dir' => $_SERVER["DOCUMENT_ROOT"].'/local/modules/council.setup/migrations',
+    // 'dir_archive' => 'archive', // not required. default = "archive"
+    'use_transaction' => true, // not required. default = false
+    'default_fields' => [
+        IBlock::class => [
+            'INDEX_ELEMENT' => 'N',
+            'INDEX_SECTION' => 'N',
+            'VERSION' => 2,
+            'SITE_ID' => 's1',
+        ]
+    ]
+];
+
+$database = new BitrixDatabaseStorage($config['table']);
+$templates = new TemplatesCollection();
+$templates->registerBasicTemplates();
+
+$migratorFacade = new MigratorFacade($_SERVER["DOCUMENT_ROOT"].'/local/modules/council.setup/migrations');
+$migrator = $migratorFacade->getMigrator();
+
+$app = new Application('Migrator');
+$app->add(new MakeCommand($migrator));
+$app->add(new InstallCommand($config['table'], $database));
+$app->add(new MigrateCommand($migrator));
+$app->add(new RollbackCommand($migrator));
+$app->add(new TemplatesCommand($templates));
+$app->add(new StatusCommand($migrator));
+$app->add(new ArchiveCommand($migrator));
+$app->run();

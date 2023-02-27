@@ -1,0 +1,36 @@
+{
+  "name": "proklung/db-command",
+  "description": "Консольные команды для экспорта-импорта-сброса базы данных",
+  "type": "library",
+  "keywords": [
+    "php",
+    "console",
+    "command"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gavrilov Fedy",
+      "email": "fedor.gavrilov.75@mail.ru",
+      "homepage": "https://github.com/ProklUng"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/ProklUng/db.command/issues",
+    "source": "https://github.com/ProklUng/db.command"
+  },
+  "autoload": {
+    "psr-4": {
+      "Prokl\\DbCommands\\": "src"
+    }
+  },
+  "bin": [
+    "bin/db"
+  ],
+  "require": {
+    "php": ">=7.3 || ^8.0",
+    "ifsnop/mysqldump-php": "^2.9",
+    "symfony/console": "^4.4 | ^5.0",
+    "symfony/dotenv":  "^4.4 | ^5.0"
+  }
+}

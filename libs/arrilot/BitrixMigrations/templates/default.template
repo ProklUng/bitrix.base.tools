@@ -1,0 +1,29 @@
+<?php
+
+use Arrilot\BitrixMigrations\BaseMigrations\BitrixMigration;
+use Arrilot\BitrixMigrations\Exceptions\MigrationException;
+
+class __className__ extends BitrixMigration
+{
+    /**
+     * Run the migration.
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function up()
+    {
+        //
+    }
+
+    /**
+     * Reverse the migration.
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function down()
+    {
+        //
+    }
+}

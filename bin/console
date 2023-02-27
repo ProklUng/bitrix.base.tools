@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+use Prokl\Commands\ConsoleCommandConfigurator;
+use Prokl\Commands\DbExport;
+use Prokl\Commands\DbImport;
+use Prokl\Commands\LongLive;
+use Prokl\Commands\EmailsCanBeSendCommand;
+use Prokl\Utils\LoaderBitrix;
+use Symfony\Component\Console\Application;
+
+@set_time_limit(0);
+
+$_SERVER['DOCUMENT_ROOT'] = __DIR__ . DIRECTORY_SEPARATOR . '../../../..';
+$GLOBALS['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
+
+$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/dependencies/autoload.php';
+$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/libs/autoload.php';
+
+/** @noinspection PhpIncludeInspection */
+require_once $autoloadPath;
+require_once $autoloadPathModule;
+
+/**
+ * Загрузить Битрикс.
+ */
+$loaderBitrix = new LoaderBitrix();
+$loaderBitrix->setDocumentRoot($_SERVER['DOCUMENT_ROOT']);
+$loaderBitrix->initializeBitrix();
+
+if (!$loaderBitrix->isBitrixLoaded()) {
+    exit('Bitrix not initialized.');
+}
+
+$application = new ConsoleCommandConfigurator(
+    new Application(),
+    new EmailsCanBeSendCommand(),
+    new DbExport(),
+    new DbImport(),
+    new LongLive()
+);
+
+$application->init();
+$application->run();

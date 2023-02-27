@@ -1,0 +1,5 @@
+/bitrix/modules/base.setup/vendor/
+/local/modules/base.setup/vendor/
+vendor
+composer.lock
+/.idea
