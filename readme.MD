@@ -29,7 +29,7 @@ composer.json:
 
 ~~~php
 
-           Запуск из PHP строки в админке Битрикса.
+           // Запуск из PHP строки в админке Битрикса.
            require_once '../../local/modules/base.setup/libs/migrations/autoload.php';
        
            use Arrilot\BitrixMigrations\MigratorFacade;
