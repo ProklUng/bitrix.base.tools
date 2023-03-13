@@ -87,3 +87,7 @@ include '/path/to/file_for_autoload.php';
 
 
 ~~~
+
+### Symfony VarDumper 5.4
+
+См. - https://symfony.com/doc/5.4/components/var_dumper.html
