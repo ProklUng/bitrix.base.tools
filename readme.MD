@@ -98,6 +98,6 @@ include '/path/to/file_for_autoload.php';
 
 Запуск:
 
-`/local/modules/council.setup/bin/adminer.php`
+`/local/modules/base.setup/bin/adminer.php`
 
 По умолчанию (так работаю локально) пароль на базу не установлен. Псевдо-пароль: `1111111111`.
