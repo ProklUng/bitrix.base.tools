@@ -91,3 +91,13 @@ include '/path/to/file_for_autoload.php';
 ### Symfony VarDumper 5.4
 
 См. - https://symfony.com/doc/5.4/components/var_dumper.html
+
+### Adminer
+
+См. - https://github.com/vrana/adminer
+
+Запуск:
+
+`/local/modules/council.setup/bin/adminer.php`
+
+По умолчанию (так работаю локально) пароль на базу не установлен. Псевдо-пароль: `1111111111`.
