@@ -23,6 +23,9 @@
     
     return new AdminerPlugin($plugins);
 }
+include "../adminer/security.php";
+
+BitrixAdminerSecurity::check();
 
 // include original Adminer or Adminer Editor
 include "../adminer/adminer.php";
