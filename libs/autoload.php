@@ -116,6 +116,8 @@ function __dm_autoload_719($name)
     }
 }
 
-require_once 'krumo/class.krumo.php';
+if (!class_exists(Krumo::class)) {
+    require_once 'krumo/class.krumo.php';
+}
 
 spl_autoload_register('__dm_autoload_719');
