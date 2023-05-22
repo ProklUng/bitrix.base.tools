@@ -212,16 +212,7 @@ class Import
             }
 
             $this->db->select_db($this->database);
-
-            return;
         }
-
-        throw new RuntimeException(
-            sprintf(
-                'Error connection to database: %s',
-                $this->db->connect_error
-            )
-        );
     }
 
     /**
