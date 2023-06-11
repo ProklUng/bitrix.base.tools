@@ -1,6 +1,6 @@
 <?php
 
-namespace Council\Setup;
+namespace Prokl\Setup;
 
 use Exception;
 use Faker\Factory;
@@ -12,7 +12,7 @@ use RecursiveIteratorIterator;
 
 /**
  * Class BaseTestCase
- * @package Council\Setup
+ * @package Prokl\Setup
  */
 class BaseTestCase extends TestCase
 {

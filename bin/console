@@ -14,8 +14,8 @@ use Symfony\Component\Console\Application;
 $_SERVER['DOCUMENT_ROOT'] = __DIR__ . DIRECTORY_SEPARATOR . '../../../..';
 $GLOBALS['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
 
-$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/dependencies/autoload.php';
-$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/libs/autoload.php';
+$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/dependencies/autoload.php';
+$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/libs/autoload.php';
 
 /** @noinspection PhpIncludeInspection */
 require_once $autoloadPath;

@@ -15,12 +15,7 @@ class __className__ extends BitrixMigration
     {
         $fields = __fields__;
 
-        $ibp = new CIBlockProperty();
-        $propId = $ibp->add($fields);
-
-        if (!$propId) {
-            throw new MigrationException('Ошибка при добавлении свойства инфоблока '.$ibp->LAST_ERROR);
-        }
+        return return $this->addIblockElementProperty($fields);
     }
 
     /**

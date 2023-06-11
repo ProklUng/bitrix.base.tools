@@ -25,8 +25,8 @@ use Symfony\Component\Console\Application;
 $_SERVER['DOCUMENT_ROOT'] = __DIR__ . DIRECTORY_SEPARATOR . '../../../..';
 $GLOBALS['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
 
-$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/dependencies/autoload.php';
-$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/council.setup/libs/autoload.php';
+$autoloadPath = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/dependencies/autoload.php';
+$autoloadPathModule = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/libs/autoload.php';
 
 require_once $autoloadPath;
 require_once $autoloadPathModule;
@@ -46,7 +46,7 @@ if (!$loaderBitrix->isBitrixLoaded()) {
 
 $config = [
     'table' => 'migrations',
-    'dir' => $_SERVER["DOCUMENT_ROOT"].'/local/modules/council.setup/migrations',
+    'dir' => $_SERVER["DOCUMENT_ROOT"].'/local/modules/base.setup/migrations',
     // 'dir_archive' => 'archive', // not required. default = "archive"
     'use_transaction' => true, // not required. default = false
     'default_fields' => [
@@ -63,7 +63,7 @@ $database = new BitrixDatabaseStorage($config['table']);
 $templates = new TemplatesCollection();
 $templates->registerBasicTemplates();
 
-$migratorFacade = new MigratorFacade($_SERVER["DOCUMENT_ROOT"].'/local/modules/council.setup/migrations');
+$migratorFacade = new MigratorFacade($_SERVER["DOCUMENT_ROOT"].'/local/modules/base.setup/migrations');
 $migrator = $migratorFacade->getMigrator();
 
 $app = new Application('Migrator');

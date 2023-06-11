@@ -1,6 +1,6 @@
 <?php
 
-use Council\Setup\BitrixableBaseTestCase;
+use Prokl\Setup\BitrixableBaseTestCase;
 
 /**
  * Class ExampleTestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Council\Setup;
+namespace Prokl\Setup;
 
 use Exception;
 use Faker\Factory;
@@ -13,7 +13,7 @@ use RecursiveIteratorIterator;
 
 /**
  * Class BitrixableBaseTestCase
- * @package Council\Setup
+ * @package Prokl\Setup
  */
 class BitrixableBaseTestCase extends TestCase
 {

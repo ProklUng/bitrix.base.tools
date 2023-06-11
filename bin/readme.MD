@@ -22,7 +22,7 @@ include '/path/to/file_for_autoload.php';
 Запуск из PHP командной строки Битрикса:
 
 ```php 
-chdir($_SERVER['DOCUMENT_ROOT']. '/local/modules/council.setup/bin');
+chdir($_SERVER['DOCUMENT_ROOT']. '/local/modules/base.setup/bin');
 $output = [];
 exec('php console db:export', $output);
 

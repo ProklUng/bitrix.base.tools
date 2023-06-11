@@ -101,3 +101,11 @@ include '/path/to/file_for_autoload.php';
 `/local/modules/base.setup/bin/adminer.php`
 
 По умолчанию (так работаю локально) пароль на базу не установлен. Псевдо-пароль: `1111111111`.
+
+## Админка
+
+`/local/modules/base.setup/admin/admin_menu.php`
+
+#### Переключение режима Debug Битрикса
+#### Дамп БД
+#### Восстановление БД из дампа

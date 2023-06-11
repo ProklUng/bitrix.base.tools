@@ -1,5 +1,6 @@
 /bitrix/modules/base.setup/vendor/
 /local/modules/base.setup/vendor/
+/local/modules/base.setup/dumps/
 vendor
 composer.lock
 /.idea

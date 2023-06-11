@@ -1,0 +1,155 @@
+.popup__container {
+    height: 78px;
+    width: 374px;
+}
+
+.pop-title-content {
+    display: flex;
+    justify-content: center;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+}
+
+.smaller {
+    font-size:9px;
+}
+
+.mt-5px {
+    margin-top:5px
+}
+
+.popup__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#popup-message-dump {
+    width: 350px;
+    height: 230px;
+    border-radius: 0;
+}
+
+.file-div {
+    background: transparent none repeat scroll 0 0;
+    border: 2px solid #c2c2c2;
+    border-radius: 5px;
+    color: #555555;
+    cursor: pointer;
+    display: table-cell;
+    font-size: 13px;
+    height: 27px;
+    outline: medium none;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    vertical-align: middle;
+    width: 125px;
+}
+.file-name {
+    color: #dc112e;
+    display: table-cell;
+    font-size: 13px;
+    height: 27px;
+    text-align: right;
+    vertical-align: middle;
+    width: 125px;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.popup-window-titlebar-text {
+    margin-left: 25px;
+    margin-top: 25px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #000000;
+    white-space: inherit;
+}
+
+.popup-window-titlebar {
+    padding-bottom: 10px;
+}
+
+#popup-window-content-popup-message {
+}
+
+#popup-window-content-popup-message {
+    margin-top: 25px;
+    margin-left: 17px;
+}
+
+
+.popup-window-button {
+    text-transform: inherit;
+    color: #000000;
+}
+
+
+.popup-window-buttons {
+    width: 180px;
+    margin-left: 29px;
+}
+
+.cncl-message, .cncl-error {
+    display:none;
+}
+
+.cncl-button:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.cncl-button_primary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.cncl-button {
+    display: inline-block;
+    min-width: 300px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.cncl-button:disabled {
+    opacity: .5
+}
+
+.cncl-input::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.cncl-input {
+    display: block;
+    width: 275px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

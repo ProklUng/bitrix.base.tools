@@ -1,16 +1,14 @@
 <?php
 
-namespace Prokl\DbCommands\Utils;
+namespace Prokl\Mysqldump;
 
+use Exception;
 use mysqli;
 use mysqli_result;
 use RuntimeException;
 
 /**
  * Class Import
- * @package Prokl\DbCommands\Utils
- *
- * @since 12.12.2020
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
@@ -93,6 +91,24 @@ class Import
     }
 
     /**
+     * Импортировать базу.
+     *
+     * @param string $fileDbDump Файл с дампом.
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function importDatabase(string $fileDbDump) : void
+    {
+        $offset = null;
+        do {
+            $result = $this->importFile($_SERVER['DOCUMENT_ROOT'] . $fileDbDump, $offset);
+            $offset = $result['offset'] ?? null;
+        } while ($offset !== null);
+    }
+
+    /**
      * Импортировать файл в базу.
      *
      * @param string       $file Файл.
@@ -102,7 +118,7 @@ class Import
      *
      * @throws RuntimeException
      */
-    public function importFile(string $file, $offset = null): array
+    private function importFile(string $file, $offset = null): array
     {
         $handle = fopen($file, "rb");
 
@@ -212,16 +228,7 @@ class Import
             }
 
             $this->db->select_db($this->database);
-
-            return;
         }
-
-        throw new RuntimeException(
-            sprintf(
-                'Error connection to database: %s',
-                $this->db->connect_error
-            )
-        );
     }
 
     /**
