@@ -49,6 +49,26 @@ function loadBackupDb() {
 
 }
 
+function longLiveDb() {
+    __ajaxCall("longlive.php", '', false, function (response) {
+            if (response.result === true) {
+                const popupDumpDbLive = bxPopupSimple(
+                    "popup-message-longlive", 'Жизнь продлена', null,
+                    function() { window.location.reload(); }
+                );
+
+                popupDumpDbLive.show();
+            } else {
+                const popupDumpDbLive = bxPopupSimple(
+                    "popup-message-longlive", 'Ошибка продления жизни', null,
+                    function() {  }
+                );
+
+                popupDumpDbLive.show();
+            }
+    });
+}
+
 function dbExportContent() {
     return '' +
         '<div class="pop-title-content"><input id="dump_file" value="' + defaultDbName + '"></div>' +
@@ -115,6 +135,49 @@ function bxPopup(id, title, content, callback) {
     });
 }
 
+function bxPopupSimple(id, title, content, callback) {
+    return BX.PopupWindowManager.create(id, null, {
+        content: content,
+
+        zIndex: 100,
+        closeIcon: {
+            opacity: 1
+        },
+        titleBar: title,
+        closeByEsc: true,
+        darkMode: false,
+        autoHide: true,
+        draggable: true,
+        resizable: true,
+        min_height: 100,
+        min_width: 100,
+        lightShadow: true,
+        angle: false,
+        overlay: {
+            backgroundColor: 'black',
+            opacity: 500
+        },
+        buttons: [
+            new BX.PopupWindowButton({
+                text: 'OK',
+                className: '',
+                events: {
+                    click: function () {
+                        this.popupWindow.close();
+                        callback();
+                    }
+                }
+            }),
+        ],
+        events: {
+            onPopupShow: function () {
+            },
+            onPopupClose: function () {
+            }
+        }
+    });
+}
+
 $(document).ready(function () {
     const popupDumpDbExport = bxPopup(
         "popup-message-dump", 'Файл .sql с дампом', dbExportContent(),
@@ -135,6 +198,12 @@ $(document).ready(function () {
     $('#backup-load-db-button').on('click', function() {
         popupDumpDbImport.show();
 
+        return false;
+    })
+
+    $('#longlive-db-button').on('click', function() {
+
+        longLiveDb();
         return false;
     })
 })

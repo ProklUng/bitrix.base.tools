@@ -46,6 +46,24 @@ class LongLive extends Command
     }
 
     /**
+     * @param string $dbName
+     * @param string $dbLogin
+     * @param string $dbPassword
+     * @return void
+     */
+    public function processLongLive(string $dbName, string $dbLogin, string $dbPassword) : bool
+    {
+        if (!$this->modifyFile()) {
+            return false;
+        }
+
+        $this->modifyDBRecord($dbName, $dbLogin, $dbPassword);
+        $this->clear_dir(__DIR__.'/../../../../../../bitrix/managed_cache/MYSQL');
+
+        return true;
+    }
+
+    /**
      * @inheritDoc
      */
     protected function configure()
@@ -72,9 +90,14 @@ class LongLive extends Command
             return 1;
         }
 
-        $this->modifyFile($output);
-        $this->modifyDBRecord($dbHost, $dbLogin, $dbPassword);
-        $this->clear_dir(__DIR__.'/../../../../../../bitrix/managed_cache/MYSQL');
+        $result = $this->processLongLive($dbHost, $dbLogin, $dbPassword);
+        if ($result) {
+            $output->writeln('Файл успешно исправлен.');
+        } else {
+            $output->writeln('Ошибка исправления файла.');
+            die();
+        }
+
         $output->writeln('Папка managed_cache удалена.');
         $output->writeln('Триал успешно сброшен!');
 
@@ -106,20 +129,17 @@ class LongLive extends Command
     }
 
     /**
-     * @param OutputInterface $output
-     *
-     * @return void
+     * @return bool
      */
-    private function modifyFile(OutputInterface $output): void
+    private function modifyFile(): bool
     {
         if ($file = @fopen(__DIR__.'/../../../../../../bitrix/modules/main/admin/define.php', 'w')) {
             if (fwrite($file, "<?define('TEMPORARY_CACHE', '{$this->outCode1}');?>")) {
                 fclose($file);
-                $output->writeLn('Файл исправлен.');
+                return true;
             }
         } else {
-            $output->writeLn('File wasn\'t created!');
-            die();
+            return false;
         }
     }
 

@@ -2,6 +2,11 @@
 
 use Prokl\Utils\SettingsManager;
 
+define('NOT_CHECK_PERMISSIONS', true);
+define('NO_AGENT_CHECK', true);
+define("NO_KEEP_STATISTIC", true);
+define("STOP_STATISTICS", true);
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php';
 global $USER;
 

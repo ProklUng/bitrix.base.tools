@@ -55,6 +55,19 @@ $config = [
                 'type' => 'html',
                 'html' => migrator_load_db(),
             ],
+        'db_delimiter' => [
+            'label' => '',
+            'tab' => 'tools',
+            'type' => 'html',
+            'html' => '<div style="margin-top:25px;"><hr></div>',
+        ],
+        'long_live' =>
+            [
+                'label' => '',
+                'tab' => 'tools',
+                'type' => 'html',
+                'html' => long_live(),
+            ],
 
 
     ]

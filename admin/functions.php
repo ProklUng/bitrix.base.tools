@@ -14,8 +14,22 @@ if (!function_exists('displayDebugStatus')) {
     }
 }
 
+if (!function_exists('long_live')) {
+    function long_live() : string {
+        ob_start(); ?>
+        <div>
+            <button id="longlive-db-button" class="cncl-button cncl-button_primary" style="margin-left: 10px">
+                Долгая жизнь триала
+            </button>
+        </div>
+        <div id="longlive-result-create" style="margin-top:10px;"></div>
+        <?php
+
+        return (string)ob_get_clean();
+    }
+}
 if (!function_exists('migrator_backup_db')) {
-    function migrator_backup_db()
+    function migrator_backup_db() : string
     {
         ob_start(); ?>
         <div>
@@ -26,7 +40,7 @@ if (!function_exists('migrator_backup_db')) {
         <div id="dbdump-result-create" style="margin-top:10px;"></div>
         <?php
 
-        return ob_get_clean();
+        return (string)ob_get_clean();
     }
 }
 
