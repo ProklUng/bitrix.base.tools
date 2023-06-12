@@ -377,7 +377,7 @@ class ModuleForm
 
         $dbName = $dbExporter->getCurrentDbName() . '-' . date ('Ymdhi') . '.sql';
 
-        Asset::getInstance()->addString('<script data-skip-moving="true">var defaultDbName="' . $dbName . '";</scriptdata-skip-moving>');
+        Asset::getInstance()->addString('<script data-skip-moving="true">var defaultDbName="' . $dbName . '";</script>');
         Asset::getInstance()->addString('<script data-skip-moving="true">var currentDbName="' . $dbExporter->getCurrentDbName() . '";</script>');
     }
 
