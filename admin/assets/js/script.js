@@ -12,6 +12,35 @@ async function controlDebug(ev) {
     return false;
 }
 
+/**
+ * Add GET param to url.
+*/
+function addGetParam(param, value, id, callbackId) {
+    let url = window.location.href;
+
+    if (!value) {
+        let obUrl = new URL(url);
+        let params = new URLSearchParams(obUrl.search);
+        params.delete(id);
+
+        let returnValue = obUrl.protocol + '//' + obUrl.host + obUrl.pathname;
+
+        if (callbackId) {
+            returnValue = returnValue + '?tab=' + callbackId;
+        }
+
+        return returnValue;
+    }
+
+    if (url.indexOf('?') > -1) {
+        url += '&' + param + '=' + value
+    } else {
+        url += '?' + param + '=' + value;
+    }
+
+    return url;
+}
+
 function backupDb(fileName) {
     const divResult = $('#dbdump-result-create');
     const file = $('#dump_file').val();
@@ -206,4 +235,12 @@ $(document).ready(function () {
         longLiveDb();
         return false;
     })
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const tab = urlParams.get('tab');
+
+    if (tab) {
+        $('#' + tab).click();
+    }
 })

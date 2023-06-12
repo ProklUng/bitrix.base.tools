@@ -142,9 +142,9 @@
 }
 
 .cncl-input {
-    display: block;
+    display: inline-block;
     width: 275px;
-    padding: .375rem .75rem;
+    padding: .2rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
@@ -152,4 +152,25 @@
     background-clip: padding-box;
     border: 1px solid #ced4da;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.log-container {
+    max-height: 400px;
+    overflow: scroll;
+    background-color: black;
+    color: forestgreen;
+}
+
+.log-container .log-item  {
+    font-size: 10px;
+    margin: 5px;
+}
+
+.filter-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.filter-container input {
+
 }

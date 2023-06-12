@@ -107,6 +107,7 @@ function __dm_autoload_719($name)
         'Prokl\\Utils\\SettingsManager' => 'prokl/utils/SettingsManager.php',
         'Prokl\\Tools\\DbDumper' => 'prokl/tools/dbdumper.php',
         'Prokl\\Tools\\BitrixConfigs' => 'prokl/tools/bitrixconfigs.php',
+        'Prokl\\Tools\\ServerLogs' => 'prokl/tools/serverlogs.php',
         'App\Log' => 'app/Log.php',
         'App\Monolog\ArrayFormatter' => 'app/Monolog/ArrayFormatter.php',
         'App\Monolog\ExceptionHandlerLog' => 'app/Monolog/ExceptionHandlerLog.php',
@@ -116,7 +117,11 @@ function __dm_autoload_719($name)
         'Prokl\Module\ModuleId' => 'module/moduleid.php',
         'Prokl\Module\ModuleForm' => 'module/moduleform.php',
         'Prokl\Module\ModuleManager' => 'module/modulemanager.php',
+        'Prokl\Options\ModuleOptions' => 'prokl/options/moduleoptions.php',
+        'Prokl\Options\BitrixHelper' => 'prokl/options/bitrixhelper.php',
+        'Prokl\Options\OptionHelper' => 'prokl/options/optionhelper.php',
     );
+
     if (isset($map[$name])) {
         require $map[$name];
     }
