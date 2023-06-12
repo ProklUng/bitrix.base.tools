@@ -29,9 +29,8 @@ if (!function_exists('apache_access_logs')) {
                 ModuleOptions::getLogLimit()
         );
 
-        if (!empty($_GET['filter_access-filter'])) {
-            $apacheAccessLog = $serverLogs->filterLog($apacheAccessLog, (string)$_GET['filter_access-filter']);
-        }
+        $filterValue = !empty($_GET['filter_access-filter']) ? (string)$_GET['filter_access-filter'] : '';
+        $apacheAccessLog = $serverLogs->filterLog($apacheAccessLog, $filterValue);
 
         $filter = $serverLogs->generateViewFilterLog('access-filter', (string)$_GET['filter_access-filter']);
 
@@ -45,9 +44,8 @@ if (!function_exists('php_error_logs')) {
         $serverLogs = new ServerLogs();
         $phpLogs = $serverLogs->phpErrorsLogLines(ModuleOptions::getLogLimit());
 
-        if (!empty($_GET['filter_php-error'])) {
-            $phpLogs = $serverLogs->filterLog($phpLogs, (string)$_GET['filter_php-error']);
-        }
+        $filterValue = !empty($_GET['filter_php-error']) ? (string)$_GET['filter_php-error'] : '';
+        $phpLogs = $serverLogs->filterLog($phpLogs, $filterValue);
 
         $filter = $serverLogs->generateViewFilterLog('php-error', (string)$_GET['filter_php-error']);
 

@@ -49,6 +49,10 @@ class ServerLogs
      */
     public function filterLog(array $data, string $value) : array
     {
+        if (!$value) {
+            return $data;
+        }
+
         return array_filter($data, function ($item) use ($value) {
            if (stripos($item, $value) !== false) {
                return true;
@@ -191,7 +195,7 @@ class ServerLogs
     }
 
     /**
-     * Get all log files out of /var/log and return an array with additional information
+     * Get all log files out of /var/log and return an array with additional information.
      *
      * @param string $logPath
      *
@@ -217,8 +221,10 @@ class ServerLogs
     }
 
     /**
-     * @param string $id
-     * @param string $value
+     * View для кнопки фильтра.
+     *
+     * @param string $id    ID кнопки.
+     * @param string $value Текущее значение фильтра.
      *
      * @return string
      */
@@ -238,8 +244,10 @@ class ServerLogs
     }
 
     /**
-     * @param array  $logs
-     * @param string $class
+     * View для вывода контента файлов лога.
+     *
+     * @param array  $logs  Построчный файл лога.
+     * @param string $class Класс.
      *
      * @return string
      */
