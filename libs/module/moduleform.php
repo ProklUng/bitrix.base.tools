@@ -14,6 +14,7 @@ use CAdminMessage;
 use CAdminTabControl;
 use Bitrix\Main\Application;
 use Exception;
+use Prokl\Options\ModuleOptions;
 use Prokl\Tools\DbDumper;
 
 Loc::loadMessages(__FILE__);
@@ -64,44 +65,11 @@ class ModuleForm
         $this->options = $options;
         $this->context = Application::getInstance()->getContext();
         $this->formId = $formId;
-        $this->modulePath = static::getModuleUrl();
+        $this->modulePath = ModuleOptions::getModuleUrl();
 
         defined('ADMIN_MODULE_NAME') or define('ADMIN_MODULE_NAME', $this->options->getModuleId());
 
         $this->assets();
-    }
-
-
-    /**
-     * URL, где лежит модуль.
-     *
-     * @return string
-     */
-    public static function getModuleUrl() : string
-    {
-        foreach (['/local/modules/', '/bitrix/modules/'] as $path) {
-            if (@file_exists($_SERVER['DOCUMENT_ROOT']. $path . ModuleId::ID)) {
-                return $path . ModuleId::ID;
-            }
-        }
-
-        return '';
-    }
-
-    /**
-     * Директория, где лежит модуль.
-     *
-     * @return string
-     */
-    public static function getModuleDir() : string
-    {
-        foreach (['/local/modules/', '/bitrix/modules/'] as $path) {
-            if (@file_exists($_SERVER['DOCUMENT_ROOT']. $path . ModuleId::ID)) {
-                return $_SERVER['DOCUMENT_ROOT']. $path . ModuleId::ID;
-            }
-        }
-
-        return '';
     }
 
     /**
@@ -400,6 +368,7 @@ class ModuleForm
 
         $pathAssets = $this->getPathToAssets();
 
+        Asset::getInstance()->addString('<script data-skip-moving="true">var baseSetupModuleUrl="' . ModuleOptions::getModuleUrl() . '";</script>');
         Asset::getInstance()->addJs($pathAssets . '/js/api.js');
         Asset::getInstance()->addJs($pathAssets . '/js/script.js');
         $APPLICATION->SetAdditionalCSS($pathAssets . "/css/style.css");
@@ -408,8 +377,8 @@ class ModuleForm
 
         $dbName = $dbExporter->getCurrentDbName() . '-' . date ('Ymdhi') . '.sql';
 
-        Asset::getInstance()->addString('<script>var defaultDbName="' . $dbName . '";</script>');
-        Asset::getInstance()->addString('<script>var currentDbName="' . $dbExporter->getCurrentDbName() . '";</script>');
+        Asset::getInstance()->addString('<script data-skip-moving="true">var defaultDbName="' . $dbName . '";</scriptdata-skip-moving>');
+        Asset::getInstance()->addString('<script data-skip-moving="true">var currentDbName="' . $dbExporter->getCurrentDbName() . '";</script>');
     }
 
     /**
@@ -417,9 +386,8 @@ class ModuleForm
      */
     private function getPathToAssets() : string
     {
-        return static::getModuleUrl() . '/admin/assets';
+        return ModuleOptions::getModuleUrl() . '/admin/assets';
     }
-
 
     /**
      * Request.

@@ -7,6 +7,7 @@
 use Prokl\Module\Module;
 use Prokl\Module\ModuleForm;
 use Prokl\Module\ModuleId;
+use Prokl\Options\ModuleOptions;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 
@@ -36,7 +37,7 @@ $module = new Module(
 );
 
 
-$menuData = include ModuleForm::getModuleDir() . '/admin/menu_data.php';
+$menuData = include ModuleOptions::getModuleDir() . '/admin/menu_data.php';
 
 $optionsManager = $module->getOptionsManager();
 

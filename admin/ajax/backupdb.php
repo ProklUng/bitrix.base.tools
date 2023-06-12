@@ -2,6 +2,7 @@
 
 use Bitrix\Main\Loader;
 use Prokl\Module\ModuleForm;
+use Prokl\Options\ModuleOptions;
 use Prokl\Tools\DbDumper;
 
 define('NOT_CHECK_PERMISSIONS', true);
@@ -22,7 +23,7 @@ Loader::IncludeModule('base.setup');
 
 try {
     $dumper = new DbDumper();
-    $dumper->setFolder(ModuleForm::getModuleUrl() . '/dumps');
+    $dumper->setFolder(ModuleOptions::getModuleUrl() . '/dumps');
     $result = $dumper->export();
 } catch (Exception $e) {
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);

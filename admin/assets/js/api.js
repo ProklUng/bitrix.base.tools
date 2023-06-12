@@ -12,7 +12,7 @@ class ApiLayer
         data.action = action;
 
         let payload = {
-            url: '/local/modules/base.setup/admin/ajax/' + action + '.php',
+            url: baseSetupModuleUrl + '/admin/ajax/' + action + '.php',
             timeout: 1600 * 1000,
             method: "POST",
             data: data,
@@ -36,7 +36,7 @@ function __ajaxCall(handler, dir, reload = true, callback = null, payload = null
 
     BX.showWait();
     $.ajax({
-        url: "/local/modules/base.setup/admin/ajax/" + handler,
+        url: baseSetupModuleUrl + "/admin/ajax/" + handler,
         method: "POST",
         data: payload,
         dataType: "json"

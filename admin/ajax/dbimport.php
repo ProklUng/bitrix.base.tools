@@ -6,7 +6,12 @@ if (empty($_POST) || empty($_POST['host']) || empty($_POST['database']) || empty
     echo json_encode(['success' => false, 'message' => 'InvalidParams']);
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/libs/ifsnop/Mysqldump/import.php';
+$pathClass = $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/libs/ifsnop/Mysqldump/import.php';
+if (!@file_exists($pathClass)) {
+    $pathClass = $_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/base.setup/libs/ifsnop/Mysqldump/import.php';
+}
+
+require_once $pathClass;
 
 $importer = new Import(
     $_POST['host'],
