@@ -38,6 +38,11 @@ function addGetParam(param, value, id, callbackId) {
         url += '?' + param + '=' + value;
     }
 
+
+    if (callbackId) {
+        url = url + '&tab=' + callbackId;
+    }
+
     return url;
 }
 
@@ -240,7 +245,7 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(queryString);
     const tab = urlParams.get('tab');
 
-    if (tab) {
+        if (tab) {
         $('#' + tab).click();
     }
 })
