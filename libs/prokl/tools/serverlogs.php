@@ -19,6 +19,10 @@ class ServerLogs
      */
     public function apacheAccessLog(string $file, int $limit = 1000) : array
     {
+        if (!$file) {
+            return [];
+        }
+
         $i = 0;
         $parsedLogs = [];
 
