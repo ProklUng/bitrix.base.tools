@@ -1,8 +1,5 @@
 <?php
 
-use Prokl\Options\ModuleOptions;
-use Prokl\Tools\ServerLogs;
-
 if (!function_exists('displayDebugStatus')) {
     function displayDebugStatus(): string
     {
@@ -15,41 +12,6 @@ if (!function_exists('displayDebugStatus')) {
         </div>
         <?php return ob_get_clean();
 
-    }
-}
-
-if (!function_exists('apache_access_logs')) {
-    function apache_access_logs() : string
-    {
-        //    $dir = dirname(ini_get('error_log'));
-       //     $dir .= '/dev5_access.log';
-        $serverLogs = new ServerLogs();
-        $apacheAccessLog = $serverLogs->apacheAccessLog(
-                ModuleOptions::getPathToApacheErrorLog(),
-                ModuleOptions::getLogLimit()
-        );
-
-        $filterValue = !empty($_GET['filter_access-filter']) ? (string)$_GET['filter_access-filter'] : '';
-        $apacheAccessLog = $serverLogs->filterLog($apacheAccessLog, $filterValue);
-
-        $filter = $serverLogs->generateViewFilterLog('access-filter', (string)$_GET['filter_access-filter']);
-
-        return $filter . $serverLogs->generateViewLog($apacheAccessLog, 'apache-access-log');
-    }
-}
-
-if (!function_exists('php_error_logs')) {
-    function php_error_logs() : string
-    {
-        $serverLogs = new ServerLogs();
-        $phpLogs = $serverLogs->phpErrorsLogLines(ModuleOptions::getLogLimit());
-
-        $filterValue = !empty($_GET['filter_php-error']) ? (string)$_GET['filter_php-error'] : '';
-        $phpLogs = $serverLogs->filterLog($phpLogs, $filterValue);
-
-        $filter = $serverLogs->generateViewFilterLog('php-error', (string)$_GET['filter_php-error']);
-
-        return $filter . $serverLogs->generateViewLog($phpLogs, 'php-error-log');
     }
 }
 

@@ -19,10 +19,6 @@ $config = [
             'TAB' => 'Инструментарий',
             'TITLE' => 'Различные инструменты',
         ],
-        'logs' => [
-            'TAB' => 'Логи',
-            'TITLE' => '',
-        ],
     ],
     'options' => [
         [
@@ -71,44 +67,6 @@ $config = [
                 'tab' => 'tools',
                 'type' => 'html',
                 'html' => long_live(),
-            ],
-        'apache_log_path' => [
-            'label' => 'Путь к логам доступа Apache',
-            'tab' => 'logs',
-            'type' => 'input',
-        ],
-        'apache_log_limit' => [
-            'label' => 'Максимальное количество записей (по умолчанию 10000)',
-            'tab' => 'logs',
-            'type' => 'number',
-        ],
-
-        'ap_log_header' => [
-            'label' => '',
-            'tab' => 'logs',
-            'type' => 'html',
-            'html' => '<div style="margin-top:25px;"><h3>Логи доступа Apache</h3></div>',
-        ],
-
-        'apache_access_logs' =>
-            [
-                'label' => '',
-                'tab' => 'logs',
-                'type' => 'html',
-                'html' => apache_access_logs(),
-            ],
-        'php_log_header' => [
-            'label' => '',
-            'tab' => 'logs',
-            'type' => 'html',
-            'html' => '<div style="margin-top:25px;"><h3>Логи ошибок PHP</h3></div>',
-        ],
-        'php_error_logs' =>
-            [
-                'label' => '',
-                'tab' => 'logs',
-                'type' => 'html',
-                'html' => php_error_logs(),
             ],
     ],
 ];
