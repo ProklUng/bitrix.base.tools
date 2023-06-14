@@ -12,8 +12,8 @@ if (!is_dir($documentRoot)) {
     );
 }
 
-require_once 'vendor/autoload.php';
-require_once 'autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/modules/base.setup/tests/autoload.php';
 
 define('LANGUAGE_ID', 'pa');
 define('NO_KEEP_STATISTIC', true);
